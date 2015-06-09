@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+    }
+}
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.1"
+
+    defaultConfig {
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/libs/']
+        }
+    }
+}
+
+// call regular ndk-build(.cmd) script from app directory
+task ndkBuild(type: Exec) {
+    String ndkDir = project.plugins.findPlugin('com.android.library').getNdkFolder()
+    commandLine "$ndkDir/ndk-build", '-j8', '-C', file('src/main/jni').absolutePath
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn ndkBuild
+}
+task cleanExtra(type: Delete) {
+    delete 'src/main/obj'
+}
+clean.dependsOn(cleanExtra)
