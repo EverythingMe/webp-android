@@ -48,6 +48,8 @@ public class WebpImageView extends ImageView {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.webp);
 
         int webpSourceResourceID = a.getResourceId(R.styleable.webp_webp_src, 1);
+        a.recycle();
+
         InputStream inputStream = getResources().openRawResource(webpSourceResourceID);
         byte[] bytes = streamToBytes(inputStream);
         Bitmap bitmap = null;
