@@ -5,7 +5,7 @@
 #include "swig_utils.h"
 
 JNIEXPORT
-jbyteArray Java_me_everything_common_graphics_WebPDecoder_decodeRGBAnative( JNIEnv *jenv, jclass jcls,
+jbyteArray Java_me_everything_webp_WebPDecoder_decodeRGBAnative( JNIEnv *jenv, jclass jcls,
 		jbyteArray jencoded, jlong jencodedLength,
 		jintArray jwidth, jintArray jheight)
 {

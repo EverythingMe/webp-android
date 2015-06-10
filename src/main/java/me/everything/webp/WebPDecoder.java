@@ -1,7 +1,6 @@
 package me.everything.webp;
 
 import android.graphics.Bitmap;
-
 import java.nio.ByteBuffer;
 
 public class WebPDecoder {
