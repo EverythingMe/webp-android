@@ -47,7 +47,7 @@ public class WebpImageView extends ImageView {
     private void init(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.webp);
 
-        int webpSourceResourceID = a.getResourceId(R.styleable.webp_webp_src, 1);
+        int webpSourceResourceID = a.getResourceId(R.styleable.webp_webp_src, 0);
         a.recycle();
 
         InputStream inputStream = getResources().openRawResource(webpSourceResourceID);
