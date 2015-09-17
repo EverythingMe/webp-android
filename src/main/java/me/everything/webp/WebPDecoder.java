@@ -1,6 +1,7 @@
 package me.everything.webp;
 
 import android.graphics.Bitmap;
+
 import java.nio.ByteBuffer;
 
 public class WebPDecoder {
@@ -23,8 +24,12 @@ public class WebPDecoder {
     }
 
     public Bitmap decodeWebP(byte[] encoded) {
-        int[] width = new int[]{0};
-        int[] height = new int[]{0};
+        return decodeWebP(encoded, 0, 0);
+    }
+
+    public Bitmap decodeWebP(byte[] encoded, int w, int h) {
+        int[] width = new int[]{w};
+        int[] height = new int[]{h};
 
         byte[] decoded = decodeRGBAnative(encoded, encoded.length, width, height);
         if (decoded.length == 0) return null;
